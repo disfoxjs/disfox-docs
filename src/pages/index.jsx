@@ -40,7 +40,20 @@ export default function Home() {
     <div className="home-page">
       <div className="glow-line"></div>
 
-      <main className="container-light">
+      {/* Ícone SVG do GitHub na extrema esquerda (Injetado diretamente) */}
+      <a 
+        href="https://github.com/DisfoxJS" 
+        target="_blank" 
+        rel="noreferrer" 
+        className="github-fixed-left"
+        aria-label="GitHub DisfoxJS"
+      >
+        <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" fill="currentColor">
+          <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82A7.494 7.494 0 0 0 8 3c-.73 0-1.44.1-2.12.31-1.53-1.04-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+        </svg>
+      </a>
+
+      <main className="container-dark">
         <div className="main-layout">
           <div className="content-left">
             <section className="hero-section">
@@ -48,14 +61,14 @@ export default function Home() {
                 <img
                   src="/img/dfx-outline.png"
                   alt="Disfox Logo"
-                  className="logo-img-light"
+                  className="logo-img-dark"
                 />
 
                 <h1 className="hero-title">
                   Build applications with real organization and total flexibility.
                 </h1>
 
-                <div className="typewriter-light">
+                <div className="typewriter-dark">
                   <span className="tw-prefix">|</span>
                   <span className="tw-text">
                     {displayedText}
@@ -104,7 +117,7 @@ export default function Home() {
               </div>
 
               <div className="hero-visual">
-                <div className="terminal-light">
+                <div className="terminal-dark">
                   <div className="terminal-header">
                     <span className="dot dot-red"></span>
                     <span className="dot dot-yellow"></span>
@@ -118,16 +131,17 @@ export default function Home() {
                 </div>
               </div>
 
-              <div class="description">
-                <p> <strong>Disfox</strong> is a TypeScript-powered framework for Discord.js designed to make application development faster, cleaner, and smarter. </p> <p> With built-in automation tools, integrated services, and a modern architecture, Disfox eliminates repetitive tasks and helps you focus on creating exceptional Discord applications. </p> <p> Less boilerplate. More productivity. Unlimited possibilities. </p> <a href="https://disfox.js.org/docs/disfox/0.1.0/en/Get-Started/Why%20Disfox/"> Why Disfox? </a>
+              <div className="description">
+                <p> <strong>Disfox</strong> is a TypeScript-powered framework for Discord.js designed to make application development faster, cleaner, and smarter. </p>
+                <p> With built-in automation tools, integrated services, and a modern architecture, Disfox eliminates repetitive tasks and helps you focus on creating exceptional Discord applications. </p>
+                <p> Less boilerplate. More productivity. Unlimited possibilities. </p>
+                <a href="https://disfox.js.org/docs/disfox/0.1.0/en/Get-Started/Why%20Disfox/"> Why Disfox? </a>
               </div>
             </section>
           </div>
 
-          
-
           <aside className="sidebar-right">
-            <a href="/changelog" className="ad-card-light">
+            <a href="/changelog" className="ad-card-dark">
               <img
                 src="/img/v0.1.0.png"
                 alt="v0.1.0"
@@ -135,7 +149,7 @@ export default function Home() {
               />
             </a>
 
-            <a href="https://disfox.netlify.app" className="ad-card-light">
+            <a href="https://disfox.netlify.app" className="ad-card-dark">
               <img
                 src="/img/legacy-site.png"
                 alt="banner"
@@ -145,7 +159,7 @@ export default function Home() {
 
             <a
               href="https://discord.gg/UuZnAuhhP6"
-              className="ad-card-light"
+              className="ad-card-dark"
             >
               <img
                 src="/img/discord-joinus.png"
@@ -156,7 +170,7 @@ export default function Home() {
 
             <a
               href="https://github.com/DisfoxJS/Disfox"
-              className="ad-card-light"
+              className="ad-card-dark"
             >
               <img
                 src="/img/githubrepository.png"
@@ -170,7 +184,7 @@ export default function Home() {
         <section className="built-with">
           <div className="tech-logos">
             <p className="built-title">Powered by</p>
-
+            
             <a
               href="https://nodejs.org"
               target="_blank"
@@ -196,39 +210,33 @@ export default function Home() {
             </a>
           </div>
         </section>
-        
 
-        <footer className="footer-light" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px' }}>
-  
-  {/* Esquerda: Redes Sociais / Font Awesome Icons */}
-  <div className="footer-left" style={{ display: 'flex', gap: '15px' }}>
-    <a href="https://discord.gg/UuZnAuhhP6" target="_blank" rel="noreferrer" aria-label="Discord">
-      <i className="fa-brands fa-discord"></i>
-    </a>
-    <a href="https://github.com/DisfoxJS" target="_blank" rel="noreferrer" aria-label="GitHub">
-      <i className="fa-brands fa-github"></i>
-    </a>
-    <a href="https://npmjs.com/package/disfox" target="_blank" rel="noreferrer" aria-label="NPM">
-      <i className="fa-brands fa-npm"></i>
-    </a>
-  </div>
+        <footer className="footer-dark">
+          <div className="footer-left">
+            <a href="https://discord.gg/UuZnAuhhP6" target="_blank" rel="noreferrer" aria-label="Discord">
+              <i className="fa-brands fa-discord"></i>
+            </a>
+            <a href="https://github.com/DisfoxJS" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <i className="fa-brands fa-github"></i>
+            </a>
+            <a href="https://npmjs.com/package/disfox" target="_blank" rel="noreferrer" aria-label="NPM">
+              <i className="fa-brands fa-npm"></i>
+            </a>
+          </div>
 
-  {/* Meio: Copyright e Licença MIT */}
-  <div className="footer-center" style={{ textAlign: 'center' }}>
-    <p>© 2026 Disfox. Licensed under the MIT License.</p>
-  </div>
+          <div className="footer-center">
+            <p>© 2026 Disfox. Licensed under the MIT License.</p>
+          </div>
 
-  {/* Direita: Links com setinha para cima */}
-  <div className="footer-right" style={{ display: 'flex', gap: '20px' }}>
-    <a href="https://disfox.js.org/docs/disfox/0.1.0/en/Get-Started/Why%20Disfox" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-      Why Disfox <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: '0.8rem' }}></i>
-    </a>
-    <a href="https://disfox.js.org/docs/disfox/0.1.0/en/Get-Started/install/" target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-      Get Started <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: '0.8rem' }}></i>
-    </a>
-  </div>
-
-</footer>
+          <div className="footer-right">
+            <a href="https://disfox.js.org/docs/disfox/0.1.0/en/Get-Started/Why%20Disfox" target="_blank" rel="noreferrer">
+              Why Disfox <i className="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://disfox.js.org/docs/disfox/0.1.0/en/Get-Started/install/" target="_blank" rel="noreferrer">
+              Get Started <i className="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </footer>
       </main>
     </div>
   );
