@@ -40,7 +40,6 @@ export default function Home() {
     <div className="home-page">
       <div className="glow-line"></div>
 
-      {/* Ícone SVG do GitHub na extrema esquerda (Injetado diretamente) */}
       <a 
         href="https://github.com/DisfoxJS" 
         target="_blank" 
@@ -185,18 +184,6 @@ export default function Home() {
           <div className="tech-logos">
             <p className="built-title">Powered by</p>
             
-            <a
-              href="https://nodejs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
-                alt="Node.js"
-                title="Node.js"
-              />
-            </a>
-
             <a
               href="https://discord.js.org"
               target="_blank"
