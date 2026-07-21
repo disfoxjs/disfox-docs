@@ -83,7 +83,7 @@ export default function Home() {
                     Documentation
                   </a>
 
-                  <a href="/docs/disfox/0.1.0/en/Get-Started/Why%20Disfox" className="btn btn-secondary">
+                  <a href="#why-disfox" className="btn btn-secondary">
                     Why Disfox?
                   </a>
 
@@ -134,7 +134,66 @@ export default function Home() {
                 <p> <strong>Disfox</strong> is a TypeScript-powered framework for Discord.js designed to make application development faster, cleaner, and smarter. </p>
                 <p> With built-in automation tools, integrated services, and a modern architecture, Disfox eliminates repetitive tasks and helps you focus on creating exceptional Discord applications. </p>
                 <p> Less boilerplate. More productivity. Unlimited possibilities. </p>
-                <a href="https://disfox.js.org/docs/disfox/0.1.0/en/Get-Started/Why%20Disfox/"> Why Disfox? </a>
+              </div>
+            </section>
+
+            <section id="why-disfox" className="why-disfox-container">
+              <div className="why-disfox-header">
+                <h2>Why Disfox?</h2>
+                <p>
+                  Disfox is a framework built to enhance the <strong>Discord.js</strong> experience by providing automation, structure, and practical tools for Discord application development.
+                </p>
+              </div>
+
+              <div className="why-disfox-grid">
+                <div className="why-card">
+                  <span className="why-card-number">01</span>
+                  <h3>Better Organization</h3>
+                  <p>As Discord applications grow, keeping commands, events, services, and business logic organized becomes increasingly important.</p>
+                  <p>Disfox encourages a structured architecture where each part of the application has a clear responsibility, helping projects stay maintainable and scalable.</p>
+                </div>
+
+                <div className="why-card">
+                  <span className="why-card-number">02</span>
+                  <h3>Less Boilerplate</h3>
+                  <p>Reduces setup overhead through tools like <strong>SlashService</strong> and <strong>EventService</strong>, which handle repetitive tasks automatically.</p>
+                  <ul className="why-feature-list">
+                    <li>Automatic command discovery from directories</li>
+                    <li>Conversion into Discord.js-compatible data</li>
+                    <li>Structure validation before registration</li>
+                    <li>Flexible extraction and registration options</li>
+                  </ul>
+                </div>
+
+                <div className="why-card">
+                  <span className="why-card-number">03</span>
+                  <h3>BehaviorTables</h3>
+                  <p>Simplifies permissions, restrictions, and execution rules in a centralized and declarative way without cluttering your command files.</p>
+                </div>
+
+                <div className="why-card">
+                  <span className="why-card-number">04</span>
+                  <h3>JS & TS Support</h3>
+                  <p>Offers full support for both JavaScript and TypeScript, providing strong typing, autocompletion, and improved tooling out of the box.</p>
+                </div>
+
+                <div className="why-card">
+                  <span className="why-card-number">05</span>
+                  <h3>Designed for Real Projects</h3>
+                  <p>Built explicitly to solve common file management, command registration, and permission challenges in medium and large applications.</p>
+                </div>
+
+                <div className="why-card">
+                  <span className="why-card-number">06</span>
+                  <h3>Performance Matters</h3>
+                  <p>Minimizes unnecessary overhead while offering higher-level abstractions, ensuring your application runs fast and efficiently.</p>
+                </div>
+
+                <div className="why-card why-card-full">
+                  <span className="why-card-number">07</span>
+                  <h3>Open Source Community</h3>
+                  <p>Completely open source and driven by community feedback. The source code is publicly available on GitHub, with active discussions on Discord.</p>
+                </div>
               </div>
             </section>
           </div>

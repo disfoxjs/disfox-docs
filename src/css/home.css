@@ -33,12 +33,12 @@ body.homepage nav.navbar {
     display: none !important;
 }
 
-/* Posicionamento do SVG na extrema esquerda superior */
+
 .github-fixed-left {
     position: absolute;
-    top: 30px;
+    top: 40px;
     left: 40px; 
-    color: rgba(255, 255, 255, 0.35); /* Branco meio transparente */
+    color: rgb(255, 253, 253);
     transition: color 0.3s ease, transform 0.3s ease;
     z-index: 100;
     display: flex;
@@ -54,10 +54,10 @@ body.homepage nav.navbar {
 .glow-line {
     position: fixed;
     top: 0; left: 0;
-    width: 100%; height: 4px;
-    background: linear-gradient(90deg, #ff0000, #ff5e00, #f9ffa6, #a6d667, #00ff2a, #00ffaa, #00f7ff, #0099ff, #0400ff, #cc00ff);
+    width: 100%; height: 7px;
+    background: linear-gradient(90deg, #ff0000, #ff5e00, #ffca1a, #a6d667, #00ff2a, #00ffaa, #00f7ff, #0099ff, #0400ff, #cc00ff);
     background-size: 200% 100%;
-    animation: gradientMove 5s linear infinite;
+    animation: gradientMove 9s linear infinite;
     z-index: 9999;
 }
 
@@ -436,4 +436,109 @@ body.homepage nav.navbar {
     .footer-right {
         justify-content: center;
     }
+}
+
+.why-disfox-container {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.why-disfox-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.why-disfox-header p {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.why-disfox-header strong {
+  color: var(--brand-color);
+}
+
+.why-disfox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.why-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-color);
+  box-shadow: var(--shadow-hover);
+}
+
+.why-card-number {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--brand-color);
+  background: rgba(59, 130, 246, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.why-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.why-card p {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.why-card strong {
+  color: var(--text-main);
+}
+
+.why-feature-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.why-feature-list li {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  position: relative;
+  padding-left: 18px;
+}
+
+.why-feature-list li::before {
+  content: "•";
+  color: var(--brand-color);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.why-card-full {
+  grid-column: 1 / -1;
 }
