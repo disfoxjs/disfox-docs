@@ -1,10 +1,11 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
+html,
+body,
+#__docusaurus,
+.main-wrapper,
+.theme-doc-markdown,
+.container {
+  background: #090a0f !important;
+}
 :root {
   --ifm-color-primary: #2b69a3;
   --ifm-color-primary-dark: #29784c;
@@ -13,8 +14,16 @@
   --ifm-color-primary-light: #33925d;
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
+
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f5f5f5;
+
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -54,4 +63,250 @@
   width: auto;
   display: block;
   object-fit: contain;
+}
+
+
+
+.dfx-footer {
+  width: 100%;
+  margin-top: auto;
+
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+
+  background: transparent !important;
+  background-color: transparent !important;
+
+  color: var(--ifm-color-emphasis-700);
+}
+
+.dfx-footer-container {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.dfx-footer-container {
+  width: 100%;
+  max-width: 1440px;
+
+  margin: 0 auto;
+  padding: 36px 48px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+
+  gap: 48px;
+}
+
+
+/* LEFT */
+
+.dfx-footer-left {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 12px;
+}
+
+.dfx-footer-left p {
+  margin: 0;
+
+  color: var(--ifm-color-emphasis-700);
+
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+
+/* SOCIALS */
+
+.dfx-footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dfx-footer-socials a {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--ifm-color-emphasis-600);
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.dfx-footer-socials a:hover {
+  color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+}
+
+.dfx-footer-socials svg {
+  display: block;
+
+  width: 22px;
+  height: 22px;
+}
+
+
+
+.dfx-footer-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  white-space: nowrap;
+
+  color: var(--ifm-color-emphasis-700);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.dfx-footer-center a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dfx-footer-center img {
+  display: block;
+
+  width: 36px;
+  height: 36px;
+
+  object-fit: contain;
+
+  transition: transform 0.2s ease;
+}
+
+.dfx-footer-center a:hover img {
+  transform: scale(1.08);
+}
+
+
+
+
+.dfx-footer-right {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 7px;
+}
+
+.dfx-footer-right a {
+  color: var(--ifm-color-emphasis-700);
+
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.dfx-footer-right a:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+
+@media (max-width: 996px) {
+  .dfx-footer-container {
+    padding: 32px;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .dfx-footer-center {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    justify-self: center;
+  }
+
+  .dfx-footer-left {
+    grid-column: 1;
+  }
+
+  .dfx-footer-right {
+    grid-column: 2;
+  }
+}
+
+
+
+@media (max-width: 600px) {
+  .dfx-footer-container {
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px 20px;
+
+    gap: 26px;
+  }
+
+  .dfx-footer-left,
+  .dfx-footer-right {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dfx-footer-center {
+    order: -1;
+  }
+
+  .dfx-footer-left p {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-dark {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 28px;
+    padding: 30px 20px;
+  }
+
+  .footer-left,
+  .footer-right {
+    align-items: center;
+  }
+
+  .footer-center {
+    order: -1;
+  }
+}
+
+
+@media (max-width: 768px) {
+    .footer-dark {
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+    }
+
+    .footer-left,
+    .footer-right {
+        align-items: center;
+    }
+
+    .footer-center {
+        justify-content: center;
+    }
 }

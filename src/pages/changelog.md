@@ -1,5 +1,261 @@
 # Updates
 
+## 0.1.5
+
+##### 2026-10-02
+
+### Fixed
+
+- Fixed the typing of `Application.events.listenEvents(events.valid)`.
+
+- Errors thrown by `Application.connect()` now use `DisfoxError` instead of the native `Error`.
+
+- Removed unnecessary imports.
+
+- Fixed the return type of `SlashService.Option.channelTypes()` to `this`, allowing proper method chaining.
+
+### Improved
+
+- Updated the TypeScript build configuration to target `ES2022` and use Node.js-compatible module resolution, improving compatibility with the minimum supported runtime: **Node.js 20+**.
+
+- Added and reorganized internal error codes:
+  - `UNDEFINED_TOKEN`
+  - `UNDEFINED_CLIENT`
+  - `APPLICATION_NOT_READY`
+  - `ALREADY_CONNECTED`
+
+- The following getters no longer throw errors when the `Client` or `ClientUser` is unavailable:
+  - `Application.client`
+  - `Application.user`
+
+- `Application` initialization has been simplified and now supports multiple initialization methods.
+
+An existing `discord.js` `Client` can still be provided:
+
+```js
+import { Client, GatewayIntentBits } from "discord.js";
+import { Application } from "disfox";
+
+const client = new Client({
+    intents: [GatewayIntentBits.MessageContent]
+});
+
+const app = new Application({
+    token: process.env.TOKEN,
+    client
+});
+```
+
+Disfox can also create the `Client` automatically:
+
+```js
+import { GatewayIntentBits } from "discord.js";
+import { Application } from "disfox";
+
+const app = new Application({
+    token: process.env.TOKEN,
+    intents: [
+        GatewayIntentBits.MessageContent
+    ]
+});
+```
+
+When no intents are provided, Disfox automatically configures its default intents:
+
+```js
+import { Application } from "disfox";
+
+const app = new Application({
+    token: process.env.TOKEN
+});
+```
+
+Applications can now also be initialized directly from a token:
+
+```js
+import { Application } from "disfox";
+
+const app = new Application(process.env.TOKEN);
+```
+
+> Intents automatically configured by Disfox can later be modified using the new `Application` intent management methods.
+
+- **All initialization examples are available in:**
+[Creating an Application](https://disfox.js.org/docs/disfox/0.1.5/en/Get-Started/Creating%20Application#other-initialization-methods)
+
+### Added
+
+- Added the new `Application.refresh()` method.
+
+This method restarts the `Client` connection to the Discord Gateway by destroying the current connection and reconnecting.
+
+---
+
+- Added the `Application.addIntent()` method for adding a single intent to the configuration used during `IDENTIFY`.
+
+---
+
+- Added the `Application.addIntents()` method for adding multiple intents to the configuration used during `IDENTIFY`.
+
+---
+
+- Added the `Application.removeIntent()` method for removing an intent from the configuration used during `IDENTIFY`.
+
+---
+
+- Added the `Application.clearIntents()` method for removing all intents currently configured for `IDENTIFY`.
+
+- **See the complete intent configuration documentation in:**
+[Configuring Intents](https://disfox.js.org/docs/disfox/0.1.5/en/Get-Started/Creating%20Application#configuring-intents)
+
+---
+
+- Added support for **Option Choices** in `SlashService.Option`.
+
+Choices can now be declared directly through the Disfox API:
+
+```js
+const option = new SlashService.Option("choice")
+    .choices({
+        rock: "rock",
+        paper: "paper",
+        scissors: "scissors"
+    });
+```
+
+Equivalent configuration using `discord.js`:
+
+```js
+.addStringOption(option =>
+    option
+        .addChoices(
+            { name: "rock", value: "rock" },
+            { name: "paper", value: "paper" },
+            { name: "scissors", value: "scissors" }
+        )
+)
+```
+
+- See the complete documentation in:
+[Adding Options with Choices](https://disfox.js.org/docs/disfox/0.1.5/en/Services/SlashService#adding-options-with-choices)
+
+### Updated
+
+- Support for the `event.data` property in event definitions has been removed.
+
+The following format is **no longer supported**:
+
+```js
+export default {
+    data: Events.MessageCreate,
+
+    async execute(message) {
+        if (!message.content.startsWith("!mean")) return;
+
+        await message.reply({
+            content: `**@${message.author.displayName}**\n${message.content}.`
+        });
+    }
+}
+```
+
+Events must now use the `name` property:
+
+```js
+export default {
+    name: Events.MessageCreate,
+
+    async execute(message) {
+        // Event logic
+    }
+}
+```
+
+> **Attention:** existing event definitions using `event.data` must be updated to use the new API.
+
+---
+
+## 0.1.4
+##### 2026-10-01
+
+### Fixed
+
+- Fixed issues in `SlashService.extractFile()`.
+
+- Cleaned up the `/dist` build directory, removing obsolete directories, legacy APIs, duplicated files, and approximately 340 outdated generated files.
+
+- Fixed the interaction type used by `SlashService.Command.action()`, changing it from `CommandInteraction` to `ChatInputCommandInteraction` from `discord.js`.
+
+### Improved
+
+- Deprecated the `FileManage`, `PathManage`, and `Response` modules.
+
+> These modules, along with all other deprecated Disfox APIs, are scheduled for removal in a future release.
+
+- Added support for restricting channel options by Discord channel type in `SlashService.Option`.
+
+```js
+import { ChannelType } from "discord.js";
+import {
+    SlashService,
+    SlashOptions
+} from "disfox";
+
+// Creates a channel option for the slash command.
+const channelOption = new SlashService.Option("channel")
+    .type(SlashOptions.Channel)
+    .description("Select a channel")
+    .required(true);
+
+// Restricts the option to specific Discord channel types.
+channelOption.channelTypes(
+    ChannelType.GuildText,
+    ChannelType.GuildVoice,
+    ChannelType.GuildForum
+);
+```
+
+- Added the new `SlashService.Option.channelTypes(...types: ChannelType[])` method for configuring the allowed Discord channel types of a channel option.
+
+---
+
+## 0.1.3
+##### 2026-08-14
+
+### Fixed
+
+- Fixed the NPM Disfox website URL to `https://disfox.netlify.app` in `package.json`.
+
+---
+
+## 0.1.2
+##### 2026-08-14
+
+### Fixed
+
+- The `extractFile()` and `extractDir()` methods from the `SlashService` and `EventService` services are no longer limited to `.js` files. Files with other extensions, such as `.ts`, `.cts`, `.cjs`, and similar formats, are now supported.
+
+- Fixed a bug in `SlashService.extractDir()` that occurred when the optional second configuration parameter was not provided, which could cause the application to stop responding correctly to the `InteractionCreate` event.
+
+- Fixed an issue with `Application.slash.listening` where its state was not correctly updated to `true`.
+
+- Fixed an issue between `Application.slash.listen()` and `Application.slash.deployGlobal()` that prevented new commands from being registered after the listener had already started.
+
+```js
+app.client.once(Events.ClientReady, async () => {
+    console.log("Online");
+
+    await app.slash.deployGlobal(commands.valid);
+
+    app.slash.listen();
+
+    // New commands can now be registered
+    // even after the listener has started.
+    await app.slash.deployGlobal(gamesCommands.valid);
+});
+
+```
+
 ## 0.1.1
 ##### 2026-06-18
 

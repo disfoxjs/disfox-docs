@@ -2,7 +2,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Disfox JS',
+  title: 'Disfox — Build Powerful Discord Apps with Organization and Automation',
   tagline: 'Disfox JS Documentation',
   favicon: '/img/dfx-fav.png',
 
@@ -18,6 +18,8 @@ const config = {
     defaultLocale: 'en',
     locales: ['en', 'pt'],
   },
+
+  plugins: ['./plugins/local-search/index.cjs'],
 
   presets: [
     [
@@ -36,6 +38,7 @@ const config = {
 
   themeConfig: {
     navbar: {
+      items: [{type: 'search', position: 'right'}],
       
       logo: {
         alt: 'Disfox Logo',
