@@ -35,24 +35,15 @@ function ContributorEmbed({ avatar, name, role, description, links = [] }) {
   );
 }
 
-// Swap these for the real contributor list (or fetch it from GitHub's API at build time).
 const contributors = [
   {
-    name: 'yourUsername',
-    role: 'Core Maintainer',
-    avatar: 'https://github.com/yourUsername.png',
-    description: 'Working on the Gateway connection and REST layer.',
+    name: 'xFoxyyy0',
+    role: 'Founder, Lead developer',
+    avatar: 'https://github.com/ipxzfoxy.png',
+    description: '',
     links: [
-      { label: 'GitHub', url: 'https://github.com/yourUsername', icon: 'fa-brands fa-github' },
-      { label: 'Discord', url: 'https://discord.gg/UuZnAuhhP6', icon: 'fa-brands fa-discord' },
-    ],
-  },
-  {
-    name: 'anotherContributor',
-    role: 'Docs',
-    avatar: 'https://github.com/anotherContributor.png',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/anotherContributor', icon: 'fa-brands fa-github' },
+      { label: 'GitHub', url: 'https://github.com/ipxzfoxy', icon: 'fa-brands fa-github' },
+
     ],
   },
 ];

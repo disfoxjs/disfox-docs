@@ -58,7 +58,7 @@ body.homepage nav.navbar {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 7px;
-    background: linear-gradient(90deg, #ff0000, #ff5e00, #ffca1a, #a6d667, #00ff2a, #00ffaa, #00f7ff, #0099ff, #0400ff, #cc00ff);
+    background: linear-gradient(90deg, #0077ff, #4c9aff, #7aa9ff, #b0dcff, #1f83f5);
     background-size: 200% 100%;
     animation: gradientMove 9s linear infinite;
     z-index: 9999;
@@ -279,16 +279,7 @@ body.homepage nav.navbar {
     --documentation-trace: 0deg;
     --documentation-gradient: linear-gradient(
         90deg,
-        #ff0000,
-        #ff5e00,
-        #ffca1a,
-        #a6d667,
-        #00ff2a,
-        #00ffaa,
-        #00f7ff,
-        #0099ff,
-        #0400ff,
-        #cc00ff
+#0077ff, #4c9aff, #7aa9ff, #b0dcff, #1f83f5
     );
     position: relative;
     isolation: isolate;
@@ -319,8 +310,8 @@ body.homepage nav.navbar {
     background: rgba(11, 19, 41, 0.98);
     box-shadow:
         0 0 16px rgba(56, 189, 248, 0.2),
-        0 0 28px rgba(99, 102, 241, 0.18),
-        0 0 42px rgba(236, 72, 153, 0.12);
+        0 0 28px rgba(99, 144, 241, 0.18),
+        0 0 42px rgba(72, 138, 236, 0.12);
     transform: translateY(-1px);
 }
 
@@ -364,10 +355,10 @@ body.homepage nav.navbar {
 }
 
 .documentation-search:focus-within .documentation-search-icon path {
-    stroke: url(#documentationSearchIconGradient);
+    stroke: rgb(120, 163, 255);
     filter:
         drop-shadow(0 0 4px rgba(56, 189, 248, 0.7))
-        drop-shadow(0 0 7px rgba(168, 85, 247, 0.45));
+        drop-shadow(0 0 7px rgba(248, 247, 248, 0.45));
     transform: scale(1.06);
 }
 
@@ -385,7 +376,7 @@ body.homepage nav.navbar {
     font: inherit;
     font-size: 1rem;
     font-weight: 600;
-    caret-color: #8b5cf6;
+    caret-color: #f9f8fa;
     appearance: none;
 }
 
@@ -446,16 +437,7 @@ body.homepage nav.navbar {
 .documentation-search {
     --documentation-gradient: linear-gradient(
         90deg,
-        #ff0000,
-        #ff5e00,
-        #ffca1a,
-        #a6d667,
-        #00ff2a,
-        #00ffaa,
-        #00f7ff,
-        #0099ff,
-        #0400ff,
-        #cc00ff
+#0077ff, #4c9aff, #7aa9ff, #b0dcff, #1f83f5
     );
 
     position: relative;
@@ -472,24 +454,23 @@ body.homepage nav.navbar {
     initial-value: 0deg;
 }
 
-/* Base dos Pseudo-elementos (Contorno + Brilho) */
+
 .documentation-search::before,
 .documentation-search::after {
     content: "";
     position: absolute;
     z-index: 2;
-    inset: -2px; /* Expande o brilho um pouco além da caixa */
+    inset: -2px;
     border-radius: 16px;
     pointer-events: none;
     
-    /* Gradiente em formato de torta/círculo usando a variável de ângulo */
+
     background: conic-gradient(
         from var(--documentation-trace),
-        #ff0000, #ff5e00, #ffca1a, #a6d667, #00ff2a, #00ffaa, #00f7ff, #0099ff, #0400ff, #cc00ff, #ff0000
+        #0077ff, #4c9aff, #7aa9ff, #b3d2ff, #589df8, #4b99ff, #0077ff
     );
     
-    /* Configuração da máscara que "fura" o centro e deixa só a borda */
-    padding: 2px; /* Espessura da borda animada */
+    padding: 2px;
     -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
@@ -500,13 +481,11 @@ body.homepage nav.navbar {
     transition: opacity 0.3s ease;
 }
 
-/* Efeito de Bloom (Brilho borrado atrás da linha primária) */
 .documentation-search::after {
     filter: blur(12px);
     z-index: 1;
 }
 
-/* Acionadores de Estado (Quando Clicado) */
 .documentation-search:focus-within::before {
     opacity: 1;
     animation: spinGlow 3s linear infinite;
@@ -517,7 +496,7 @@ body.homepage nav.navbar {
     animation: spinGlow 3s linear infinite;
 }
 
-/* Animação Contínua e Perfeita */
+
 @keyframes spinGlow {
     from { --documentation-trace: 0deg; }
     to { --documentation-trace: 360deg; }
@@ -732,6 +711,34 @@ body.homepage nav.navbar {
   grid-column: 1 / -1;
 }
 
+.release-banner {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.release-version {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: #fff;
+
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  line-height: 1;
+
+  white-space: nowrap;
+  pointer-events: none;
+
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* ==========================================================================
    Contributing page — nav/CTA buttons + contributor embed cards
    Scoped with a ctrb- prefix on tokens so it won't collide with home.css
@@ -746,8 +753,6 @@ body.homepage nav.navbar {
   --ctrb-text: #e7e9ee;
   --ctrb-text-dim: #9096a8;
 }
-
-/* ---------- Hero copy + actions ---------- */
 
 .hero-subtitle {
   max-width: 480px;

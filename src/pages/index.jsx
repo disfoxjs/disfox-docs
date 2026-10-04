@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+
 import '../css/home.css';
+
 import Footer from '@theme/Footer';
+
 import DocumentationSearch from '../components/DocumentationSearch';
 
 export default function Home() {
@@ -15,6 +18,9 @@ export default function Home() {
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // Versão atual do Disfox no NPM
+  const [npmVersion, setNpmVersion] = useState('');
+
   useEffect(() => {
     let timer;
 
@@ -25,6 +31,7 @@ export default function Home() {
       timer = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && displayedText === '') {
       setIsDeleting(false);
+
       setCurrentPhraseIndex(
         (prev) => (prev + 1) % phrases.length
       );
@@ -40,6 +47,50 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, currentPhraseIndex]);
+
+  /*
+   * Busca automaticamente a versão mais recente
+   * publicada do Disfox no NPM.
+   *
+   * Ex:
+   * 0.1.5 -> v0.1.5
+   * 0.2.0 -> v0.2.0
+   */
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function getLatestDisfoxVersion() {
+      try {
+        const response = await fetch(
+          'https://registry.npmjs.org/disfox/latest',
+          {
+            signal: controller.signal,
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch Disfox version: ${response.status}`
+          );
+        }
+
+        const data = await response.json();
+
+        setNpmVersion(data.version ?? '');
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          console.error(
+            'Could not get the latest Disfox version from NPM:',
+            error
+          );
+        }
+      }
+    }
+
+    getLatestDisfoxVersion();
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <>
@@ -76,7 +127,8 @@ export default function Home() {
                   />
 
                   <h1 className="hero-title">
-                    Build applications with real organization and total flexibility.
+                    Build applications with real organization and total
+                    flexibility.
                   </h1>
 
                   <div className="typewriter-dark">
@@ -131,6 +183,7 @@ export default function Home() {
 
                     <div className="terminal-body">
                       <span className="prompt">❯</span>
+
                       <span className="command">
                         npm install disfox
                       </span>
@@ -159,96 +212,102 @@ export default function Home() {
                 </div>
 
                 <DocumentationSearch homepage>
-                  {(inputProps) => <label
-                  className="documentation-search"
-                  htmlFor="documentation-search-input"
-                >
-                  <svg
-                    className="documentation-search-border"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="documentationSearchBorderGradient"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="100%"
+                  {(inputProps) => (
+                    <label
+                      className="documentation-search"
+                      htmlFor="documentation-search-input"
+                    >
+                      <svg
+                        className="documentation-search-border"
+                        aria-hidden="true"
                       >
-                        <stop offset="0%" stopColor="#38bdf8" />
-                        <stop offset="35%" stopColor="#6366f1" />
-                        <stop offset="68%" stopColor="#a855f7" />
-                        <stop offset="100%" stopColor="#ec4899" />
-                      </linearGradient>
+                        <defs>
+                          <linearGradient
+                            id="documentationSearchBorderGradient"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                          >
+                            <stop offset="0%" stopColor="#38bdf8" />
+                            <stop offset="35%" stopColor="#6366f1" />
+                            <stop offset="68%" stopColor="#a855f7" />
+                            <stop offset="100%" stopColor="#ec4899" />
+                          </linearGradient>
 
-                      <filter
-                        id="documentationSearchBorderGlow"
-                        x="-30%"
-                        y="-80%"
-                        width="160%"
-                        height="260%"
+                          <filter
+                            id="documentationSearchBorderGlow"
+                            x="-30%"
+                            y="-80%"
+                            width="160%"
+                            height="260%"
+                          >
+                            <feGaussianBlur
+                              stdDeviation="3"
+                              result="blur"
+                            />
+
+                            <feMerge>
+                              <feMergeNode in="blur" />
+                              <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                          </filter>
+                        </defs>
+
+                        <rect
+                          pathLength="100"
+                          rx="13"
+                          fill="none"
+                          stroke="url(#documentationSearchBorderGradient)"
+                          filter="url(#documentationSearchBorderGlow)"
+                        />
+                      </svg>
+
+                      <svg
+                        className="documentation-search-icon"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
                       >
-                        <feGaussianBlur stdDeviation="3" result="blur" />
-                        <feMerge>
-                          <feMergeNode in="blur" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
+                        <defs>
+                          <linearGradient
+                            id="documentationSearchIconGradient"
+                            x1="2"
+                            y1="2"
+                            x2="22"
+                            y2="22"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stopColor="#38bdf8" />
+                            <stop offset="0.52" stopColor="#8b5cf6" />
+                            <stop offset="1" stopColor="#ec4899" />
+                          </linearGradient>
+                        </defs>
 
-                    <rect
-                      pathLength="100"
-                      rx="13"
-                      fill="none"
-                      stroke="url(#documentationSearchBorderGradient)"
-                      filter="url(#documentationSearchBorderGlow)"
-                    />
-                  </svg>
+                        <path
+                          d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
 
-                  <svg
-                    className="documentation-search-icon"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <linearGradient
-                        id="documentationSearchIconGradient"
-                        x1="2"
-                        y1="2"
-                        x2="22"
-                        y2="22"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stopColor="#38bdf8" />
-                        <stop offset="0.52" stopColor="#8b5cf6" />
-                        <stop offset="1" stopColor="#ec4899" />
-                      </linearGradient>
-                    </defs>
+                      <span className="visually-hidden">
+                        Find Documentation
+                      </span>
 
-                    <path
-                      d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-
-                  <span className="visually-hidden">
-                    Find Documentation
-                  </span>
-
-                  <input
-                    {...inputProps}
-                    id="documentation-search-input"
-                    className="documentation-search-input"
-                    type="search"
-                    placeholder="Find Documentation"
-                    autoComplete="off"
-                  />
-                </label>}
+                      <input
+                        {...inputProps}
+                        id="documentation-search-input"
+                        className="documentation-search-input"
+                        type="search"
+                        placeholder="Find Documentation"
+                        autoComplete="off"
+                      />
+                    </label>
+                  )}
                 </DocumentationSearch>
               </section>
 
@@ -369,15 +428,29 @@ export default function Home() {
             </div>
 
             <aside className="sidebar-right">
+              {/* Latest Disfox release */}
               <a
                 href="/changelog"
-                className="ad-card-dark"
+                target="_blank"
+                rel="noreferrer"
+                className="ad-card-dark release-banner"
+                aria-label={
+                  npmVersion
+                    ? `Disfox v${npmVersion} on NPM`
+                    : 'Disfox on NPM'
+                }
               >
                 <img
-                  src="/img/v0.1.0.png"
-                  alt="v0.1.0"
+                  src="/img/disfox-bnp1.png"
+                  alt="Disfox latest release"
                   className="ad-image"
                 />
+
+                {npmVersion && (
+                  <span className="release-version">
+                    v{npmVersion}
+                  </span>
+                )}
               </a>
 
               <a
