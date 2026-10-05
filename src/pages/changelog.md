@@ -1,5 +1,17 @@
 # Updates
 
+## 0.1.6
+
+##### 2026-10-04
+
+### Fixed
+- Fixed examples in `README.md`.
+
+### Improved
+- Optimized the Dfx2Djs adapter for commands.
+- Removed unnecessary imports.
+- Improved internal organization.
+
 ## 0.1.5
 
 ##### 2026-10-02
