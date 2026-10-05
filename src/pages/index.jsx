@@ -428,7 +428,7 @@ export default function Home() {
             </div>
 
             <aside className="sidebar-right">
-              {/* Latest Disfox release */}
+
               <a
                 href="/changelog"
                 target="_blank"

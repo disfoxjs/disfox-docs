@@ -1,4 +1,3 @@
-// Shared by the build-time indexer and browser loader.
 module.exports = {
   fields: ['title', 'heading', 'content', 'keywords'],
   storeFields: ['title', 'heading', 'content', 'url'],

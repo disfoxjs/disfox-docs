@@ -1,7 +1,6 @@
 import MiniSearch from 'minisearch';
 import options from './options.cjs';
 
-// Both inputs share one request and one in-memory index per locale.
 const indexes = new Map();
 export function loadSearchIndex(url) {
   if (!indexes.has(url)) {
