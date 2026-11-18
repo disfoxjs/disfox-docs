@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin: 0 6px;
+}
+
+/* Too cramped for the mobile top bar; on mobile it lives in the docs box instead. */
+@media (max-width: 996px) {
+  .wrapper {
+    display: none;
+  }
+}

@@ -56,11 +56,11 @@ export default function Footer() {
         </div>
 
         <div className="dfx-footer-right">
-          <a href="/docs/disfox/0.1.0/en/Get-Started/Why%20Disfox">
+          <a href="/docs/disfox/latest/en/Get-Started/Why%20Disfox">
             Why Disfox?
           </a>
 
-          <a href="/docs/disfox/0.1.5/en/Get-Started/Install/">
+          <a href="/docs/disfox/latest/en/Get-Started/Install">
             Get Started
           </a>
 

@@ -1,0 +1,36 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 14px 14px 10px;
+  padding: 12px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 14px;
+  background: var(--ifm-background-surface-color);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* The language field only exists for mobile; on desktop the navbar button does it. */
+.mobileOnly {
+  display: none;
+}
+
+@media (max-width: 996px) {
+  .mobileOnly {
+    display: flex;
+  }
+}
+
+.label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+}

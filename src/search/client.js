@@ -15,8 +15,13 @@ export function loadSearchIndex(url) {
   return indexes.get(url);
 }
 
-export function searchDocumentation(index, query) {
-  return query.trim() ? index.search(query.trim()).slice(0, 10) : [];
+export function searchDocumentation(index, query, boost = () => 1) {
+  const term = query.trim();
+  if (!term) return [];
+  return index.search(term)
+    .map((result) => ({...result, score: result.score * boost(result.url)}))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10);
 }
 
 export function excerpt(content, query) {

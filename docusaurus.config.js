@@ -44,7 +44,10 @@ const config = {
 
   themeConfig: {
     navbar: {
-      items: [{type: 'search', position: 'right'}],
+      items: [
+        {type: 'custom-languageSwitcher', position: 'right'},
+        {type: 'search', position: 'right'},
+      ],
       
       logo: {
         alt: 'Disfox Logo',

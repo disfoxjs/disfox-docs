@@ -63,12 +63,6 @@ html[data-theme='dark'] {
   --ifm-font-color-base: #ffffff;
   --ifm-heading-color: #ffffff;
 
-  /*
-   * Emphasis
-   *
-   * 100/200/300 = superfícies e divisórias
-   * 600/700/800/900 = textos
-   */
   --ifm-color-emphasis-100: #080808;
   --ifm-color-emphasis-200: #121212;
   --ifm-color-emphasis-300: #1c1c1c;
@@ -98,10 +92,6 @@ body {
 }
 
 
-/* =========================================================
-   DARK BACKGROUND
-   ========================================================= */
-
 html[data-theme='dark'],
 html[data-theme='dark'] body,
 html[data-theme='dark'] #__docusaurus,
@@ -110,9 +100,6 @@ html[data-theme='dark'] .main-wrapper {
 }
 
 
-/* =========================================================
-   DARK DOCUMENTATION TEXT
-   ========================================================= */
 
 html[data-theme='dark'] .theme-doc-markdown {
   color: #ffffff;

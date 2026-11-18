@@ -142,7 +142,7 @@ export default function Home() {
 
                   <nav className="action-buttons">
                     <a
-                      href="/docs/disfox/0.1.5/en/Get-Started/Install"
+                      href="/docs/disfox/latest/en/Get-Started/Install"
                       className="btn btn-primary"
                     >
                       Documentation

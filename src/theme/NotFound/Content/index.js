@@ -38,7 +38,7 @@ export default function NotFound() {
               ← Back home
             </Link>
 
-            <Link className={styles.secondaryButton} to="/docs/disfox/0.1.5/en/Get-Started/Install">
+            <Link className={styles.secondaryButton} to="/docs/disfox/latest/en/Get-Started/Install">
               Explore docs →
             </Link>
           </div>

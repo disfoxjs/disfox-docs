@@ -4,6 +4,21 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import {useHistory} from '@docusaurus/router';
 import {excerpt, loadSearchIndex, searchDocumentation} from '../../search/client';
+import {parseDocUrl} from '../../docs-catalog/logic.cjs';
+import useDocsCatalog from '../../docs-catalog/useDocsCatalog';
+
+// Same package and version as the page you're reading wins, then latest.
+function rankBoost(url, scope) {
+  const where = parseDocUrl(url);
+  if (!where) return 1;
+  if (scope && where.pkg === scope.pkg && where.version === scope.version) return 2;
+  return where.version === 'latest' ? 1.5 : 1;
+}
+
+function scopeLabel(url) {
+  const where = parseDocUrl(url);
+  return where ? [where.pkg, where.version, where.locale].join(' · ') : null;
+}
 import styles from './styles.module.css';
 
 export default function DocumentationSearch({children, homepage = false}) {
@@ -11,6 +26,7 @@ export default function DocumentationSearch({children, homepage = false}) {
   const root = useRef(null);
   const history = useHistory();
   const {i18n} = useDocusaurusContext();
+  const {current} = useDocsCatalog();
   const localePrefix = i18n.currentLocale === i18n.defaultLocale ? '' : `/${i18n.currentLocale}`;
   const indexUrl = useBaseUrl(`${localePrefix}/search-index.json`);
   const [query, setQuery] = useState('');
@@ -27,11 +43,11 @@ export default function DocumentationSearch({children, homepage = false}) {
     setStatus('loading');
     loadSearchIndex(indexUrl).then((index) => {
       if (cancelled) return;
-      setResults(searchDocumentation(index, query));
+      setResults(searchDocumentation(index, query, (url) => rankBoost(url, current)));
       setStatus('ready');
     }).catch(() => { if (!cancelled) setStatus('error'); });
     return () => { cancelled = true; };
-  }, [query, indexUrl]);
+  }, [query, indexUrl, current]);
 
   useEffect(() => history.listen(() => { setOpen(false); setQuery(''); }), [history]);
   useEffect(() => {
@@ -84,6 +100,7 @@ export default function DocumentationSearch({children, homepage = false}) {
             <Link to={result.url} className={styles.result} tabIndex={-1}
               onMouseDown={(event) => event.preventDefault()}
               onMouseMove={() => setActive(i)} onClick={() => setOpen(false)}>
+              {scopeLabel(result.url) && <em className={styles.where}>{scopeLabel(result.url)}</em>}
               <strong>{result.title}</strong>
               {result.heading && result.heading !== result.title && <span>{result.heading}</span>}
               <small>{excerpt(result.content, query)}</small>
